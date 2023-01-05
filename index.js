@@ -1,11 +1,12 @@
 const express = require("express")
+const app = express()
 const cors = require("cors")
-const bcrypt = require('bcrypt');
-var jwt = require('jsonwebtoken');
+app.use(cors())
+
 const connection = require("./configs/db")
 const { userRouter } = require("./routes/user.routes")
-const app = express()
-app.use(cors())
+
+
 app.use(express.json())
 require("dotenv").config()
 const instaRouter = require("./routes/insta.routes")
