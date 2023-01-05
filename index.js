@@ -16,12 +16,12 @@ const instaRouter = require("./routes/insta.routes")
 const PORT = process.env.PORT || 8500
 
 
-app.get("/", (req,res)=>{
-    res.send("Welcome to backend of instagram")
-})
+// app.get("/", (req,res)=>{
+//     res.send("Welcome to backend of instagram")
+// })
 
-app.use("/" , userRouter)
-app.use("/instapost", instaRouter)
+app.use("/" ,cors(), userRouter)
+app.use("/instapost",cors(), instaRouter)
 
 // LISTENING AND DB CONNECTED
 
