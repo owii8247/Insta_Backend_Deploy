@@ -1,7 +1,10 @@
 const express = require("express")
-const app = express()
 const cors = require("cors")
-app.use(cors())
+const app = express()
+
+app.use(cors({
+    origin: '*'
+  }))
 
 const connection = require("./configs/db")
 const { userRouter } = require("./routes/user.routes")
