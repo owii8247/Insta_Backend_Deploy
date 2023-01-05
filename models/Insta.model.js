@@ -1,10 +1,13 @@
 const mongoose = require("mongoose")
+const {ObjectId} = mongoose.Schema.Types
 const instaSchema = new mongoose.Schema({
-    Title: { type: String, required: true },
-    Note: { type: String, required: true },
-    Tags: { type: String, required: true }
-})
+    title: { type: String, required: true },
+    body: { type: String, required: true },
+    photo: { type: String, default:"" },
+    postedBy:{type: ObjectId , ref: "user"}
+},
+{timestamps:true})
 
-const InstaModel = mongoose.model("insta", instaSchema)
+const InstaModel = mongoose.model("instapost", instaSchema)
 
 module.exports = InstaModel

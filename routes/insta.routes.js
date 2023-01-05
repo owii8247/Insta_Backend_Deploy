@@ -6,20 +6,18 @@ const instaRouter = express.Router()
 
 instaRouter.get("/:userid", async(req,res)=>{
     const userid = req.params.userid
-    const insta = await InstaModel.find({userid})
-    res.send(insta)
+    const instapost = await InstaModel.find({userid})
+    res.send(instapost)
 })
 
 
 // POST REQUEST 
 
-//
-
 instaRouter.post("/:userid/create", async(req,res)=>{
     const userid = req.params.userid
-    const {Title, Note, Tags } = req.body
+    const {title , body , photo,postedBy } = req.body
     const new_insta = new InstaModel({
-        Title , Note , Tags, userid
+        title , body , photo,postedBy, userid
     })
     await new_insta.save()
     res.send({message: "Post Posted Successfully", new_insta})
@@ -32,8 +30,8 @@ instaRouter.post("/:userid/create", async(req,res)=>{
 instaRouter.patch("/:userid/patch/instaid", async(req,res)=>{
     const userid  = req.params.userid
     const instaid = req.params.instaid
-    const insta = await InstaModel.findOne({_id:instaid})
-    if(insta.userid !== userid){
+    const instapost = await InstaModel.findOne({_id:instaid})
+    if(instapost.userid !== userid){
         return res.send("You are not validated to edit post")
     }
     const new_insta = await InstaModel.findByIdAndUpdate(instaid, req.body)
@@ -46,8 +44,8 @@ instaRouter.patch("/:userid/patch/instaid", async(req,res)=>{
 instaRouter.delete("/:userid/delete/instaid", async(req,res)=>{
     const userid = req.params.userid
     const instaid = req.params.instaid
-    const insta = await InstaModel.findOne({_id:instaid})
-    if(insta.userid !== userid){
+    const instapost = await InstaModel.findOne({_id:instaid})
+    if(instapost.userid !== userid){
         return res.send("You are not validated to delete post")
     }
     const new_insta = await InstaModel.findByIdAndDelete(instaid , req.body)
