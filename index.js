@@ -2,9 +2,7 @@ const express = require("express")
 const cors = require("cors")
 const app = express()
 
-app.use(cors({
-    origin: '*'
-  }))
+app.use(cors())
 
 const connection = require("./configs/db")
 const { userRouter } = require("./routes/user.routes")
@@ -20,7 +18,7 @@ const PORT = process.env.PORT || 8500
 //     res.send("Welcome to backend of instagram")
 // })
 
-app.use("/" ,cors(), userRouter)
+app.use("/user" ,cors(), userRouter)
 app.use("/instapost",cors(), instaRouter)
 
 // LISTENING AND DB CONNECTED
