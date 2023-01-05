@@ -13,12 +13,16 @@ require("dotenv").config()
 const instaRouter = require("./routes/insta.routes")
 const PORT = process.env.PORT || 8500
 
+// const mongoose = require("mongoose")
+// mongoose.set("strictQuery", true);
+// mongoose.connect(process.env.MONGO_URL);
 
-// app.get("/", (req,res)=>{
-//     res.send("Welcome to backend of instagram")
-// })
 
-app.use("/user" ,cors(), userRouter)
+app.get("/", (req,res)=>{
+    res.send("Welcome to backend of instagram")
+})
+
+app.use("/" ,cors(), userRouter)
 app.use("/instapost",cors(), instaRouter)
 
 // LISTENING AND DB CONNECTED
